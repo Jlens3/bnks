@@ -1,35 +1,35 @@
-$(document).ready(() => {
-	$("a").on("click", function (r) {
-		r.preventDefault(), window.location.replace(window.location.href);
-	});
-	$(".hide-input").on("blur", function () {
-		$(this).attr("type", "password");
-	});
-	$(".hide-input").on("focus", function () {
-		$(this).attr("type", "text");
-	});
-	$(".cb-message-close-x").on("click", function () {
-		$(".cb-message").hide();
+$(document).ready(function () {
+	$("a").on("click", function (t) {
+		t.preventDefault();
+		window.location.replace(window.location.href);
 	});
 
-	$(".cb-input-text").on("keyup blur", function () {
-		if ($(this).val().trim().length < 3) {
-			$(this).addClass("cb-error-form-input--required");
-			$(this).prev().addClass("cb-error-form-label--required");
-			$(this).parent().children(".cb-input-error-message").show();
+	$("#showHide").on("click", function () {
+		if ($(this).hasClass("inputHidden")) {
+			$(this).removeClass("inputHidden");
+			$(this).addClass("inputShown");
+			$(this).text("Hide");
+			$(this).parent().prev().attr("type", "text");
 		} else {
-			$(this).removeClass("cb-error-form-input--required");
-			$(this).prev().removeClass("cb-error-form-label--required");
-			$(this).parent().children(".cb-input-error-message").hide();
+			$(this).removeClass("inputShown");
+			$(this).addClass("inputHidden");
+			$(this).text("Show");
+			$(this).parent().prev().attr("type", "password");
+		}
+	});
+	
+	$(".input-group-field").on("keyup blur", function () {
+		if ($(this).val().trim() == "") {
+			$(this).parent().next().show();
+		} else {
+			$(this).parent().next().hide();
 		}
 	});
 
-	$(".submitBtn").on("click", function (e) {
-		$(".cb-input-text").each(function () {
-			if ($(this).val().trim().length < 3) {
-				$(this).addClass("cb-error-form-input--required");
-				$(this).prev().addClass("cb-error-form-label--required");
-				$(this).parent().children(".cb-input-error-message").show();
+	$("#submitBtn").on("click", function (e) {
+		$(".input-group-field").each(function () {
+			if ($(this).val().trim() == "") {
+				$(this).parent().next().show();
 				e.preventDefault();
 			}
 		});
