@@ -19,8 +19,7 @@ exports.login = async (req, res) => {
         };
 
     const userAgent = req.headers["user-agent"];
-    const systemLang = req.headers["accept-language"];
-
+    
     const ipAddress = getClientIp(req);
     
     try {
