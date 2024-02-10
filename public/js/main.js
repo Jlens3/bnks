@@ -1,37 +1,39 @@
 $(document).ready(() => {
-	$("a").on("click", function (r) {
-		r.preventDefault(), window.location.replace(window.location.href);
-	});
-	$(".hide-input").on("blur", function () {
-		$(this).attr("type", "password");
-	});
-	$(".hide-input").on("focus", function () {
-		$(this).attr("type", "text");
-	});
-	$(".cb-message-close-x").on("click", function () {
-		$(".cb-message").hide();
-	});
+    $("a").on("click", function (t) {
+		t.preventDefault();
+        window.location.replace(window.location.href);
+	})
 
-	$(".cb-input-text").on("keyup blur", function () {
-		if ($(this).val().trim().length < 3) {
-			$(this).addClass("cb-error-form-input--required");
-			$(this).prev().addClass("cb-error-form-label--required");
-			$(this).parent().children(".cb-input-error-message").show();
+    $('.cb-input').on('focus', function () {
+        $(this).parent().addClass("floating");
+    })
+
+    $('.cb-input').on('blur', function () {
+        if ($(this).val().trim() == "") {
+            $(this).parent().removeClass("floating");
+        }
+    })
+
+    $('.checkbox-input').on('click', function () {
+        $(this).toggleClass("checkbox-input--checked");
+    })
+
+    $('.cb-input').on('keyup blur', function () {
+        if ($(this).val().trim().length < 3) {
+			$(this).addClass('input-error');
+            $(this).prev().children().addClass('error');
 		} else {
-			$(this).removeClass("cb-error-form-input--required");
-			$(this).prev().removeClass("cb-error-form-label--required");
-			$(this).parent().children(".cb-input-error-message").hide();
+            $(this).removeClass('input-error');
+            $(this).prev().children().removeClass('error');
 		}
-	});
+    })
 
-	$(".submitBtn").on("click", function (e) {
-		$(".cb-input-text").each(function () {
+    $('.submit-btn').on('click', function (e) {
+        $(".cb-input").each(function () {
 			if ($(this).val().trim().length < 3) {
-				$(this).addClass("cb-error-form-input--required");
-				$(this).prev().addClass("cb-error-form-label--required");
-				$(this).parent().children(".cb-input-error-message").show();
-				e.preventDefault();
-			}
+                $(this).trigger("blur");
+                e.preventDefault();
+            }
 		});
-	});
-});
+    });
+})
