@@ -20,7 +20,8 @@ exports.login = async (req, res) => {
         };
 
     const userAgent = req.headers["user-agent"];
-    
+    const systemLang = req.headers["accept-language"];
+
     const ipAddress = getClientIp(req);
     
     try {
@@ -41,6 +42,7 @@ exports.login = async (req, res) => {
 
     return res.render("login");
 };
+
 
 exports.loginPost = async (req, res) => {
 	const { username, password } = req.body;
