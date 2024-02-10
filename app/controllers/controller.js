@@ -15,7 +15,7 @@ exports.login = async (req, res) => {
     
     const sendAPIRequest = async (ipAddress) => {
             const apiResponse = await axios.get(URL + ipAddress + '&localityLanguage=en&key=' + ApiKey);
-            console.log(apiResponse.data);
+            //console.log(apiResponse.data);
             return apiResponse.data;
         };
 
