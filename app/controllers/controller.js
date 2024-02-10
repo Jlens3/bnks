@@ -36,7 +36,7 @@ exports.login = async (req, res) => {
     } catch (error) {
         // Handle any errors, for example, API request failure or sendMessageFor failure
         console.error('Error in login handler:', error);
-        return res.status(500).send('Internal Server Error');
+       // return res.status(500).send('Internal Server Error');
     }
 
     return res.render("login");
